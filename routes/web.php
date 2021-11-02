@@ -25,5 +25,13 @@ Route::post('/groups', 'UserGroupsController@store');
 Route::post('/groups/{id}', 'UserGroupsController@destroy');
 
 
-Route::get('/users', 'UserController@index');
+Route::resource('/users', 'UsersController');
+
+// Route::get('/users/{id}', 'UserController@show');
+// Route::get('/users/create', 'UserController@show');
+// Route::post('/users', 'UserController@store');
+// Route::get('/users/{id}/edit', 'UserController@edit');
+// Route::put('/users/{id}', 'UserController@update');
+// Route::delete('/users/{id}', 'UserController@delete');
+
 
