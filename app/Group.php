@@ -8,8 +8,12 @@ class Group extends Model
 {
     protected $fillable = ['title'];
 
+    public function users(){
+        return $this->hasMany(User::class);
+    }
+
     /**
-     * getting array for select option 
+     * getting array for select option
      */
 
     public static function arrayForSelect()
@@ -17,7 +21,7 @@ class Group extends Model
         $arr = [];
 
         $groups = Group::all();
-        
+
         foreach($groups as $group){
             $arr[$group->id] = $group->title;
         }

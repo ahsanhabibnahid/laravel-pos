@@ -25,8 +25,10 @@ Route::post('/groups', 'UserGroupsController@store');
 Route::post('/groups/{id}', 'UserGroupsController@destroy');
 
 
-Route::resource('/users', 'UsersController');
+Route::resource('/users', 'UsersController', ['except' => ['show']]); //show route remove
 
+
+// Route::resource('/users', 'UsersController', ['only' => ['show','destroy']]); only show and destroy routes available
 // Route::get('/users/{id}', 'UserController@show');
 // Route::get('/users/create', 'UserController@show');
 // Route::post('/users', 'UserController@store');

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Group;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
@@ -28,9 +31,11 @@ class UsersController extends Controller
     public function create()
     {
 
-        $this->data['groups'] = Group::arrayForSelect();
+        $this->data['groups']   = Group::arrayForSelect();
+        $this->data['mode']     = 'create';
+        $this->data['headline']     = 'Add New User';
 
-        return view('users.create', $this->data);
+        return view('users.form', $this->data);
     }
 
     /**
@@ -39,9 +44,14 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        //
+        $formData = $request->all();
+        if (User::create($formData)) {
+            Session::flash('message', 'User created successfully');
+        }
+
+        return redirect()->to('users');
     }
 
     /**
@@ -52,7 +62,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        // remove route of the function
     }
 
     /**
@@ -63,7 +73,12 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $this->data['user']         = User::findOrFail($id);
+        $this->data['groups']       = Group::arrayForSelect();
+        $this->data['mode']         = 'edit';
+        $this->data['headline']     = 'Update Information';
+
+        return view('users.form', $this->data);
     }
 
     /**
@@ -73,9 +88,21 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
-        //
+        $data               = $request->all();
+        $user               = User::find($id);
+
+        $user->group_id     = $data['group_id'];
+        $user->name         = $data['name'];
+        $user->phone        = $data['phone'];
+        $user->email        = $data['email'];
+        $user->address      = $data['address'];
+
+        if ($user->save()) {
+            Session::flash('message', 'User updated successfully');
+        }
+        return redirect()->to('users');
     }
 
     /**
@@ -86,6 +113,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if (User::find($id)->delete()) {
+            Session::flash('message', 'User deleted successfully');
+        }
+
+        return redirect()->to('users');
     }
 }

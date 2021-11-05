@@ -50,19 +50,19 @@
                     @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->group_id }}</td>
+                        <td>{{ $user->group->title }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
                         <td>{{ $user->address }}</td>
                         <td class="text-right">
 
-                            <form method="POST" action="{{ url('users/'.$user->id) }}">
+                            <form method="POST" action="{{ route('users.destroy', ['user' =>$user->id]) }}">
                                 <a class="btn btn-info btn-sm" href="{{ route('users.edit', ['user'=>$user->id] )}}">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 @csrf
-                                @method('POST')
+                                @method('DELETE')
                                 <button onclick="return confirm('are you sure?')" class="btn btn-danger btn-sm" type="submit">
                                     <i class="fa fa-trash"></i>
                                 </button>
