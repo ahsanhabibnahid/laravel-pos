@@ -62,7 +62,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        // remove route of the function
+        $this->data['user'] = User::findOrFail($id);
+
+        return view('users.show', $this->data);
     }
 
     /**
