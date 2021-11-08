@@ -102,7 +102,7 @@ class UsersController extends Controller
         $user->address      = $data['address'];
 
         if ($user->save()) {
-            Session::flash('message', 'User updated successfully');
+            Session::flash('message', 'User Updated Successfully');
         }
         return redirect()->to('users');
     }
@@ -116,7 +116,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         if (User::find($id)->delete()) {
-            Session::flash('message', 'User deleted successfully');
+            Session::flash('message', 'User Deleted Successfully');
         }
 
         return redirect()->to('users');

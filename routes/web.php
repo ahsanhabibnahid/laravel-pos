@@ -27,6 +27,7 @@ Route::post('/groups/{id}', 'UserGroupsController@destroy');
 
 Route::resource('/users', 'UsersController');
 Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
+Route::resource('/products', ProductsController::class);
 
 
 // Route::resource('/users', 'UsersController', ['except' => ['show','destroy']]); remove routes
