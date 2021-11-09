@@ -13,29 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('dashboard', function () {
+        return view('welcome');
+    });
+
+    Route::get('login', 'Auth\LoginController@login')->name('login');
+    Route::post('login', 'Auth\LoginController@authenticate')->name('login.confirm');
+    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 
-
-Route::get('/groups', 'UserGroupsController@index');
-Route::get('/groups/create', 'UserGroupsController@create');
-Route::post('/groups', 'UserGroupsController@store');
-Route::post('/groups/{id}', 'UserGroupsController@destroy');
-
-
-Route::resource('/users', 'UsersController');
-Route::resource('/categories', 'CategoriesController', ['except' => ['show']]);
-Route::resource('/products', ProductsController::class);
+    Route::get('groups', 'UserGroupsController@index');
+    Route::get('groups/create', 'UserGroupsController@create');
+    Route::post('groups', 'UserGroupsController@store');
+    Route::post('groups/{id}', 'UserGroupsController@destroy');
 
 
-// Route::resource('/users', 'UsersController', ['except' => ['show','destroy']]); remove routes
-// Route::get('/users/{id}', 'UserController@show');
-// Route::get('/users/create', 'UserController@show');
-// Route::post('/users', 'UserController@store');
-// Route::get('/users/{id}/edit', 'UserController@edit');
-// Route::put('/users/{id}', 'UserController@update');
-// Route::delete('/users/{id}', 'UserController@delete');
-
-
+    Route::resource('users', 'UsersController');
+    Route::resource('categories', 'CategoriesController', ['except' => ['show']]);
+    Route::resource('products', ProductsController::class);
