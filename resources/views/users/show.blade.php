@@ -1,21 +1,7 @@
-@extends('layout.main')
+@extends('users.user_layout')
 
+@section('user_content')
 
-@section('main_content')
-
-    <div class="row clearfix mb-3">
-        <div class="col-md-6">
-            <a class="btn btn-info" href="{{ route('users.index') }}"><i class="fas fa-arrow-left"></i> Back</a>
-        </div>
-        <div class="col-md-6 text-right">
-            <a class="btn btn-info" href="{{ url('/users/create') }}"> <i class="fa fa-plus"></i> New Sale</a>
-            <a class="btn btn-info" href="{{ url('/users/create') }}"> <i class="fa fa-plus"></i> New Purchase</a>
-            <a class="btn btn-info" href="{{ url('/users/create') }}"> <i class="fa fa-plus"></i> New Payment</a>
-            <a class="btn btn-info" href="{{ url('/users/create') }}"> <i class="fa fa-plus"></i> New Receipt</a>
-        </div>
-    </div>
-
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"> {{ $user->name }} </h6>
@@ -48,12 +34,7 @@
                     </table>
                 </div>
             </div>
-
-
-
-
         </div>
     </div>
-
 
 @endsection

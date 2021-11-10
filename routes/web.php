@@ -31,6 +31,10 @@ Route::group(['middleware' => 'auth'],function () {
 
 
     Route::resource('users', 'UsersController');
+
+    Route::get('users/{id}/sales', 'UserSalesController@index')->name('user.sales');
+
     Route::resource('categories', 'CategoriesController', ['except' => ['show']]);
+
     Route::resource('products', ProductsController::class);
 });

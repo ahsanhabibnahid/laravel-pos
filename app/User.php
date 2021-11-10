@@ -8,7 +8,13 @@ class User extends Model
 {
     protected $fillable = ['group_id', 'name', 'email', 'phone', 'address'];
 
-    public function group(){
+    public function group()
+    {
         return $this->belongsTo(Group::class);
+    }
+
+    public function sales()
+    {
+        return $this->hasMany(SaleInvoice::class);
     }
 }
