@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 
 Route::get('login', 'Auth\LoginController@login')->name('login');
 Route::post('login', 'Auth\LoginController@authenticate')->name('login.confirm');
@@ -34,6 +37,7 @@ Route::group(['middleware' => 'auth'],function () {
 
     Route::get('users/{id}/sales', 'UserSalesController@index')->name('user.sales');
     Route::get('users/{id}/purchases', 'UserPurchasesController@index')->name('user.purchases');
+    
     Route::get('users/{id}/payments', 'UserPaymentsController@index')->name('user.payments');
     Route::get('users/{id}/receipts', 'UserReceiptsController@index')->name('user.receipts');
 
