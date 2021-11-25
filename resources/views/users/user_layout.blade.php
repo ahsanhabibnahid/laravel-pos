@@ -14,7 +14,7 @@
                 <i class="fa fa-plus"></i> New Purchase
             </button>
             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#newPayment">
-                <i class="fa fa-plus"></i> Payment
+                <i class="fa fa-plus"></i> New Payment
             </button>
 
             <a class="btn btn-info" href="{{ url('/users/create') }}"> <i class="fa fa-plus"></i> New Receipt</a>
